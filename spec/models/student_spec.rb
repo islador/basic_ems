@@ -11,7 +11,7 @@
 require 'spec_helper'
 
 describe Student do
-	let(:student) {FactoryGirl.create(:student)}
+	let!(:student) {FactoryGirl.create(:student)}
 
 	subject{student}
 
