@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: assignments
+#
+#  id          :integer          not null, primary key
+#  course_id   :integer
+#  start_date  :date
+#  due_date    :date
+#  max_points  :integer
+#  description :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+class Assignment < ActiveRecord::Base
+	belongs_to :course
+end

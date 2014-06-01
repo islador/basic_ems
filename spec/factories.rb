@@ -9,4 +9,12 @@ FactoryGirl.define do
 		sequence(:teacher_id) {|n| n}
 		max_points 100
 	end
+
+	factory :assignment do
+		start_date Date.today
+		due_date Date.today+1
+		max_points 100
+		sequence(:description) {|n| "Description #{n}"}
+		course
+	end
 end
