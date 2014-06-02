@@ -29,7 +29,7 @@ describe StudentsController do
     end
   end
 
-  describe "DELETE 'delete'" do
+  describe "DELETE 'destroy'" do
     it "should return http success" do
       delete 'destroy', :id => student.id
       response.should be_success
