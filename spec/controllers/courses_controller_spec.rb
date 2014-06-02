@@ -63,6 +63,15 @@ describe CoursesController do
       get 'index'
       response.should be_success
     end
+
+    it "should retrieve all courses from the database" do
+      get 'index'
+      courseList = Course.all
+      expect(assigns(:courses)).should =~ courseList
+    end
+
+    xit "should paginate returns" do
+    end
   end
 
   describe "POST 'enroll'" do
