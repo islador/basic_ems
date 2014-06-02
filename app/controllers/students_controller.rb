@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
         target = Student.where("id = ?", params[:id])[0]
         if target.nil? == false
             target.destroy!
-            redirect_to 'index'
+            render 'index'
         end
     end
 
