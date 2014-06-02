@@ -11,7 +11,7 @@ describe StudentsController do
   end
 
   describe "POST 'create'" do
-    it "should redirect for a succesful creation" do
+    it "should redirect for a successful creation" do
       post 'create', student:{"name" => "John"}
       response.should be_redirect
     end
