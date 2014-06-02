@@ -1,2 +1,19 @@
-%h1 Courses#index
-%p Find me in app/views/courses/index.html.haml
+%h1 Course List
+%table.table.table-condensed{:id => "courses_table"}
+	%thead
+		%tr
+			%th Name
+			%th Start Date
+			%th End Date
+			%th
+	%tbody
+		- @courses.each do |course|
+			%tr{:id => "course_#{course.id}"}
+				%td{:id => "course_#{course.id}_name"}= course.name
+				
+				%td= course.start_date
+
+				%td= course.end_date
+
+				%td
+					=button_to("Enroll in Course", {action: "enroll", course_id: course.id}, method: :post, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger", id: "enroll_course_#{course.id}")
