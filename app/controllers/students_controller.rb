@@ -17,7 +17,11 @@ class StudentsController < ApplicationController
     end
 
     def destroy
-        render nothing: true
+        target = Student.where("id = ?", params[:id])[0]
+        if target.nil? == false
+            target.destroy!
+            redirect_to 'index'
+        end
     end
 
     def show
