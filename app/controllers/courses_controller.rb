@@ -33,5 +33,10 @@ class CoursesController < ApplicationController
     end
 
     def enroll
+        @new_enrolled_student = EnrolledStudent.new(student_id: params[:student_id], course_id: params[:course_id])
+        if @new_enrolled_student.valid? == true
+            @new_enrolled_student.save!
+            redirect_to student_courses_path(params[:student_id], params[:course_id])
+        end
     end
 end

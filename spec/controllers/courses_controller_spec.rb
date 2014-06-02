@@ -78,7 +78,18 @@ describe CoursesController do
   describe "POST 'enroll'" do
     it "returns http success" do
       post 'enroll', student_id: student.id, :course_id => course.id
-      response.should be_success
+      response.should be_redirect
+    end
+
+    it "should create a new enrolled_student between the student and the course" do
+      post 'enroll', student_id: student.id, :course_id => course.id
+      expect(assigns(:new_enrolled_student)).should_not be_nil
+    end
+
+    it "should create the correct enrolled_student" do
+      post 'enroll', student_id: student.id, :course_id => course.id
+      expect(assigns(:new_enrolled_student).student.id).should be student.id
+      expect(assigns(:new_enrolled_student).course.id).should be course.id
     end
   end
 
