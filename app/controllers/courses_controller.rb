@@ -17,6 +17,11 @@ class CoursesController < ApplicationController
     end
 
     def destroy
+        target = Course.where("id = ?", params[:id])[0]
+        if target.nil? == false
+            target.destroy!
+            render 'index'
+        end
     end
 
     def show

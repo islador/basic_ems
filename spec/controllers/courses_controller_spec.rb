@@ -16,7 +16,7 @@ describe CoursesController do
   end
 
   describe "GET 'create'" do
-    it "returns http success" do
+    it "should redirect for a successful creation" do
       post 'create', course:{"name" => "CS 405"}
       response.should be_redirect
     end
@@ -34,10 +34,15 @@ describe CoursesController do
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "DELETE 'destroy'" do
     it "returns http success" do
       delete 'destroy', :id => course.id
       response.should be_success
+    end
+
+    it "should destroy the target course" do
+      delete 'destroy', :id => course.id
+      Course.where("id = ?", course.id)[0].should be_nil
     end
   end
 
