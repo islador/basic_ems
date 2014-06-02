@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   #get 'student/index'
 
-  root to: "student#index"
+  root to: "students#index"
 
-  resources :student
+  resources :students
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

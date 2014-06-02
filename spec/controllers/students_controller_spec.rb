@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe StudentController do
+describe StudentsController do
   let!(:student) {FactoryGirl.create(:student)}
 
   describe "GET 'new'" do
@@ -11,9 +11,14 @@ describe StudentController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
-      post 'create'
-      response.should be_success
+    it "should redirect for a succesful creation" do
+      post 'create', student:{"name" => "John"}
+      response.should be_redirect
+    end
+
+    it "should create a new student with the given name" do
+      post 'create', student:{"name" => "John"}
+      Student.last.name.should match "John"
     end
   end
 
