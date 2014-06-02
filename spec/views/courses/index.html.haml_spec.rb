@@ -8,7 +8,7 @@ describe "courses/index.html.haml" do
 	subject {page}
 
 	before(:each) do
-		visit courses_path
+		visit student_courses_path(student)
 	end
 
 	it "should have a table" do

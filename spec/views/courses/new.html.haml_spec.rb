@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe "courses/new.html.haml" do
+	let!(:student) {FactoryGirl.create(:student)}
 	subject {page}
 
 	before(:each) do
-		visit new_course_path
+		visit new_student_course_path(student)
 	end
 
 	it "should have a form to enter a new Course's name" do

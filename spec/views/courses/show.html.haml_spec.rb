@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe "courses/show.html.haml" do
 	let!(:course) {FactoryGirl.create(:course)}
+	let!(:student) {FactoryGirl.create(:student)}
 
 	subject {page}
 
 	before(:each) do
-		visit course_path(course)
+		visit student_course_path(student, course)
 	end
 
 	it "should have the course's name" do

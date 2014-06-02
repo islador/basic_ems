@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
         @new_course = Course.new(params[:course].permit(:name))
         if @new_course.valid? == true
             @new_course.save!
-            redirect_to @new_course
+            redirect_to student_course_path(params[:student_id],@new_course)
         else
             render 'new'
         end
@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
         target = Course.where("id = ?", params[:id])[0]
         if target.nil? == false
             target.destroy!
-            render 'index'
+            redirect_to student_courses_path(params[:student_id])
         end
     end
 
