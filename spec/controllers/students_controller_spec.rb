@@ -46,6 +46,11 @@ describe StudentsController do
       get 'show', :id => student.id
       response.should be_success
     end
+
+    it "should retrieve the student from the database" do
+      get 'show', :id => student.id
+      expect(assigns(:student).id).to be student.id
+    end
   end
 
   describe "GET 'index'" do
