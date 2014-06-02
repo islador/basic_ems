@@ -8,12 +8,22 @@ describe CoursesController do
       get 'new'
       response.should be_success
     end
+
+    it "should make a new class" do
+      get 'new'
+      expect(assigns(:course)).to_not be_nil
+    end
   end
 
   describe "GET 'create'" do
     it "returns http success" do
-      get 'create'
-      response.should be_success
+      post 'create', course:{"name" => "CS 405"}
+      response.should be_redirect
+    end
+
+    it "should create a new course" do
+      post 'create', course:{"name" => "CS 405"}
+      Course.last.name.should match "CS 405"
     end
   end
 
