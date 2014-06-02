@@ -39,4 +39,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  #adding support for Capybara and FactoryGirl
+  config.include Capybara::DSL
+  config.include FactoryGirl::Syntax::Methods
 end
