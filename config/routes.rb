@@ -1,20 +1,11 @@
 Rails.application.routes.draw do
-  #get 'student/new'
-
-  #get 'student/create'
-
-  #get 'student/edit'
-
-  #get 'student/delete'
-
-  #get 'student/show'
-
-  #get 'student/index'
-
   root to: "students#index"
 
   resources :students
 
+  resources :courses do
+    post '/enroll', to: "courses#enroll"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
