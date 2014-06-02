@@ -1,19 +1,21 @@
 class StudentController < ApplicationController
-  def new
-  end
+    def new
+    end
 
-  def create
-  end
+    def create
+        render nothing: true
+    end
 
-  def edit
-  end
+    def edit
+    end
 
-  def delete
-  end
+    def destroy
+        render nothing: true
+    end
 
-  def show
-  end
+    def show
+    end
 
-  def index
-  end
+    def index
+    end
 end

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe StudentController do
+  let!(:student) {FactoryGirl.create(:student)}
 
   describe "GET 'new'" do
     it "returns http success" do
@@ -9,30 +10,30 @@ describe StudentController do
     end
   end
 
-  describe "GET 'create'" do
+  describe "POST 'create'" do
     it "returns http success" do
-      get 'create'
+      post 'create'
       response.should be_success
     end
   end
 
   describe "GET 'edit'" do
     it "returns http success" do
-      get 'edit'
+      get 'edit', :id => student.id
       response.should be_success
     end
   end
 
-  describe "GET 'delete'" do
+  describe "DELETE 'delete'" do
     it "returns http success" do
-      get 'delete'
+      delete 'destroy', :id => student.id
       response.should be_success
     end
   end
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      get 'show', :id => student.id
       response.should be_success
     end
   end
