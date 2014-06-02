@@ -9,4 +9,6 @@
 #
 
 class Student < ActiveRecord::Base
+	has_many :enrolled_students
+	has_many :courses, through: :enrolled_students
 end

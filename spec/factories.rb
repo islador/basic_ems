@@ -17,4 +17,10 @@ FactoryGirl.define do
 		sequence(:description) {|n| "Description #{n}"}
 		course
 	end
+
+	factory :enrolled_student do
+		total_earned_points 0
+		student
+		course
+	end
 end

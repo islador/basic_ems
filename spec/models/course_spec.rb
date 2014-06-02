@@ -42,5 +42,26 @@ describe Course do
 		it "should have assignement_2 as an assignment" do
 			course.assignments[1].id.should be assignment_2.id
 		end
+
+		let(:student) {FactoryGirl.create(:student)}
+		let!(:enrolled_student) {FactoryGirl.create(:enrolled_student, course: course, student: student)}
+		it {should respond_to(:enrolled_students)}
+		it {should respond_to(:students)}
+
+		it "should have an enrolled student" do
+			course.enrolled_students.count.should be >0
+		end
+
+		it "should have enrolled_student as an enrolled student" do
+			course.enrolled_students[0].id.should be enrolled_student.id
+		end
+
+		it "should have students" do
+			course.students.should_not be_nil
+		end
+
+		it "should have student as a student" do
+			course.students[0].id.should be student.id
+		end
 	end
 end
