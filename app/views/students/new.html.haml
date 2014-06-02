@@ -1,0 +1,7 @@
+%h3 Add a new Student
+=form_for @student do |f|
+	=f.label :name
+	=f.text_field :name
+	=f.submit(:class => "btn btn-m btn-success", :id => "submit_new_student", :value => "Create New Student")
+
+	
