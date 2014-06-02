@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
     end
 
     def show
+        @course = Course.where("id = ?", params[:id])[0]
     end
 
     def index

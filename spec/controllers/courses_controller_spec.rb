@@ -51,6 +51,11 @@ describe CoursesController do
       get 'show', :id => course.id
       response.should be_success
     end
+
+    it "should retrieve the course from the database" do
+      get 'show', :id => course.id
+      expect(assigns(:course).id).to be course.id
+    end
   end
 
   describe "GET 'index'" do

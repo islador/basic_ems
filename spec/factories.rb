@@ -4,6 +4,7 @@ FactoryGirl.define do
 	end
 
 	factory :course do
+		sequence(:name) {|n| "Course #{n}"}
 		start_date Date.today
 		end_date Date.today+1
 		sequence(:teacher_id) {|n| n}
