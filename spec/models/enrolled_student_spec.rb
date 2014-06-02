@@ -24,24 +24,48 @@ describe EnrolledStudent do
 	it {should be_valid}
 
 	describe "Associations > " do
+		describe "Course > " do
+			it {should respond_to(:course)}
+			it {should respond_to(:student)}
 
-		it {should respond_to(:course)}
-		it {should respond_to(:student)}
+			it "should have a course" do
+				enrolled_student.course.should_not be_nil
+			end
 
-		it "should have a course" do
-			enrolled_student.course.should_not be_nil
+			it "should have course as its course" do
+				enrolled_student.course.id.should be course.id
+			end
+
+			it "should have a student" do
+				enrolled_student.student.should_not be_nil
+			end
+
+			it "should have student be its student" do
+				enrolled_student.student.id.should be student.id
+			end
 		end
 
-		it "should have course as its course" do
-			enrolled_student.course.id.should be course.id
-		end
+		describe "Enrolled Student Assignments > " do
+			let(:assignment){FactoryGirl.create(:assignment, course: course)}
+			let!(:enrolled_student_assignment) {FactoryGirl.create(:enrolled_student_assignment, enrolled_student: enrolled_student, assignment: assignment)}
+			it {should respond_to(:enrolled_student_assignments)}
+			it "should have enrolled student assignments" do
+				enrolled_student.enrolled_student_assignments.should_not be_nil
+			end
 
-		it "should have a student" do
-			enrolled_student.student.should_not be_nil
-		end
+			it "should have the correct enrolled_student_assignment" do
+				enrolled_student.enrolled_student_assignments[0].id.should be enrolled_student_assignment.id
+			end
 
-		it "should have student be its student" do
-			enrolled_student.student.id.should be student.id
+			it {should respond_to(:assignments)}
+
+			it "should have assignments" do
+				enrolled_student.assignments.should_not be_nil
+			end
+
+			it "should have the correct assignments" do
+				enrolled_student.assignments[0].id.should be assignment.id
+			end
 		end
 	end
 end

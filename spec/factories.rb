@@ -23,4 +23,11 @@ FactoryGirl.define do
 		student
 		course
 	end
+
+	factory :enrolled_student_assignment do
+		earned_points 0
+		submit_date Date.today+1
+		enrolled_student
+		assignment
+	end
 end

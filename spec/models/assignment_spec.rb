@@ -28,15 +28,31 @@ describe Assignment do
 	it {should be_valid}
 
 	describe "Associations > " do
+		describe "Course > " do
+			it {should respond_to(:course)}
 
-		it {should respond_to(:course)}
+			it "should have a course" do
+				assignment.course.should_not be_nil
+			end
 
-		it "should have a course" do
-			assignment.course.should_not be_nil
+			it "should have course as its course" do
+				assignment.course.id.should be course.id
+			end
 		end
 
-		it "should have course as its course" do
-			assignment.course.id.should be course.id
+
+		describe " Enrolled Student Assignments > " do
+			let!(:enrolled_student_assignment) {FactoryGirl.create(:enrolled_student_assignment, assignment: assignment)}
+
+			it {should respond_to(:enrolled_student_assignments)}
+
+			it "should have enrolled student assignments" do
+				assignment.enrolled_student_assignments.should_not be_nil
+			end
+
+			it "should have the correct enrolled_student_assignment" do
+				assignment.enrolled_student_assignments[0].id.should be enrolled_student_assignment.id
+			end
 		end
 	end
 end

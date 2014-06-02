@@ -13,4 +13,7 @@
 class EnrolledStudent < ActiveRecord::Base
 	belongs_to :student
 	belongs_to :course
+
+	has_many :enrolled_student_assignments
+	has_many :assignments, through: :enrolled_student_assignments
 end
