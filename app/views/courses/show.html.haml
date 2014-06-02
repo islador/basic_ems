@@ -1,2 +1,3 @@
-%h1 Courses#show
-%p Find me in app/views/courses/show.html.haml
+%h1{:id => "course_name"}=@course.name
+
+=button_to("Delete Course", {action: "destroy", id: @course.id}, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger")
