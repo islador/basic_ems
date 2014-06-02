@@ -1,2 +1,5 @@
-%h1 Courses#new
-%p Find me in app/views/courses/new.html.haml
+%h3 Add a new Course
+=form_for @course do |f|
+	=f.label :name
+	=f.text_field :name
+	=f.submit(:class => "btn btn-m btn-success", :id => "submit_new_course", :value => "Create New Course")
