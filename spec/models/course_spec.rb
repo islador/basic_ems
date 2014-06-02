@@ -9,6 +9,7 @@
 #  max_points :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  name       :string(255)
 #
 
 require 'spec_helper'
@@ -22,6 +23,7 @@ describe Course do
 	it {should respond_to(:end_date)}
 	it {should respond_to(:teacher_id)}
 	it {should respond_to(:max_points)}
+	it {should respond_to(:name)}
 
 	it {should be_valid}
 
