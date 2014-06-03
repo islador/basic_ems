@@ -1,3 +1,3 @@
 %h1{:id => "student_name"}=@student.name
-
+=button_to("Enroll in Course", student_courses_path(student_id: @student.id), method: :get, class: "btn btn-m btn-success", id: "enroll_courses")
 =button_to("Delete Student", {action: "destroy", id: @student.id}, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger")
