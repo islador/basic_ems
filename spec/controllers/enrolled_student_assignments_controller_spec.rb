@@ -9,8 +9,20 @@ describe EnrolledStudentAssignmentsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show', student_id: student.id, course_id: course.id
+      get 'show', student_id: student.id, id: enrolled_student_assignment.id
       response.should be_success
+    end
+
+    it "should retrieve the enrolled_student_assignment from the database" do
+      get 'show', student_id: student.id, id: enrolled_student_assignment.id
+      expect(assigns(:student_assignment)).to_not be_nil
+      expect(assigns(:student_assignment)).to eq(enrolled_student_assignment)
+    end
+
+    it "should retrieve the course assignment from the database" do
+      get 'show', student_id: student.id, id: enrolled_student_assignment.id
+      expect(assigns(:course_assignment)).to_not be_nil
+      expect(assigns(:course_assignment)).to eq(assignment)
     end
   end
 
