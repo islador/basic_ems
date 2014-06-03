@@ -1,0 +1,7 @@
+%h1 EnrolledStudentAssignments#submit_assignment
+%p Find me in app/views/enrolled_student_assignments/submit_assignment.html.haml
+
+=form_for(@enrolled_student_assignment, :url => {:action =>'create_submission', student_id: params[:student_id], enrolled_student_assignment_id: params[:id]}, :html => {:multipart => true}) do |f|
+	=f.label :submission
+	=f.file_field :submission
+	=f.submit(:class => "btn btn-m btn-success", :id => "submit_submission", :value => "Submit Assignment")

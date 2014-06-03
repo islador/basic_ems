@@ -23,6 +23,14 @@ class EnrolledStudentAssignmentsController < ApplicationController
 		#@course_assignments = Student.where("id = ?", params[:student_id])[0].enrolled_students.joins(:assignments)
 	end
 
-	def submit_assignment
+	def submit_submission
+		@enrolled_student_assignment = EnrolledStudentAssignment.where("id = ?", params[:id])[0]
+	end
+
+	def create_submission
+		@submission = EnrolledStudentAssignment.where("id = ?", params[:enrolled_student_assignment_id])[0]
+		@submission.submit_date = Date.today
+		@submission.update_attributes(params[:enrolled_student_assignment].permit(:submission))
+		redirect_to student_enrolled_student_assignments_path(student_id: params[:student_id])
 	end
 end
