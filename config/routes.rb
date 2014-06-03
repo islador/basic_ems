@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
   root to: "students#index"
 
   resources :students do
     resources :courses do
       post '/enroll', to: "courses#enroll"
+      resources :assignments
     end
   end
 

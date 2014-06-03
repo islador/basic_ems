@@ -1,0 +1,22 @@
+%h1 Course Assignments List
+%table.table.table-condensed{:id => "course_assignments_table"}
+	%thead
+		%tr
+			%th Name
+			%th Start Date
+			%th Due Date
+			%th Point Value
+			%th
+	%tbody
+		- @assignments.each do |assignment|
+			%tr{:id => "assignment_#{assignment.id}"}
+				%td{:id => "assignment_#{assignment.id}_name"}= assignment.name
+				
+				%td= assignment.start_date
+
+				%td= assignment.due_date
+
+				%td= assignment.max_points
+
+				%td
+					=button_to("Delete Assignment", {action: "destroy", id: assignment.id}, method: :delete, class: "btn btn-m btn-danger", id: "delete_assignment_#{assignment.id}")

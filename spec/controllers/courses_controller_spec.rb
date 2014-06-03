@@ -10,7 +10,7 @@ describe CoursesController do
       response.should be_success
     end
 
-    it "should make a new class" do
+    it "should make a new course" do
       get 'new', student_id: student.id
       expect(assigns(:course)).to_not be_nil
     end

@@ -22,4 +22,13 @@ describe "courses/show.html.haml" do
 		click_button('Delete Course')
 		Course.where("id = ?", course.id)[0].should be_nil
 	end
+
+	it "should have a button to add a new assignment to the course" do
+		should have_button('Create New Assignment')
+	end
+
+	it "should go to the new assignments page when the 'Create New Assignment' button is pressed" do
+		click_button('Create New Assignment')
+		should have_selector("input#submit_new_assignment")
+	end
 end

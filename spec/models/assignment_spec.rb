@@ -10,6 +10,7 @@
 #  description :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  name        :string(255)
 #
 
 require 'spec_helper'
@@ -24,6 +25,7 @@ describe Assignment do
 	it {should respond_to(:due_date)}
 	it {should respond_to(:max_points)}
 	it {should respond_to(:description)}
+	it {should respond_to(:name)}
 
 	it {should be_valid}
 
