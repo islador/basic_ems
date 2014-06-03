@@ -1,2 +1,13 @@
-%h1 Assignments#new
-%p Find me in app/views/assignments/new.html.haml
+%h3 Add a new Assignment to Course #{@course.name}
+=form_for(@assignment, :url=>{:action=>'create'}) do |f|
+	=f.label :name
+	=f.text_field :name
+	=f.label :max_points
+	=f.text_field :max_points
+	=f.label :description
+	=f.text_area :description
+	=f.label :start_date
+	=f.date_select(:start_date, :order => [:month, :day, :year])
+	=f.label :due_date
+	=f.date_select(:due_date, :order => [:month, :day, :year])
+	=f.submit(:class => "btn btn-m btn-success", :id => "submit_new_assignment", :value => "Create New Assignment")
