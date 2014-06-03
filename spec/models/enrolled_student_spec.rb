@@ -68,4 +68,13 @@ describe EnrolledStudent do
 			end
 		end
 	end
+
+	describe "Callbacks > " do
+		let!(:assignment) {FactoryGirl.create(:assignment, course: course)}
+		it "should make an enrolled_student_assignment for each of the course' assignments" do
+			expect{
+				EnrolledStudent.create(student_id: student.id, course_id: course.id)
+				}.to change(EnrolledStudentAssignment, :count).by(+1)
+		end
+	end
 end

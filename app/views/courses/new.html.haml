@@ -1,0 +1,5 @@
+%h3 Add a new Course
+=form_for(@course, :url=>{:action=>'create'}) do |f|
+	=f.label :name
+	=f.text_field :name
+	=f.submit(:class => "btn btn-m btn-success", :id => "submit_new_course", :value => "Create New Course")

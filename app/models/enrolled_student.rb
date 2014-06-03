@@ -16,4 +16,14 @@ class EnrolledStudent < ActiveRecord::Base
 
 	has_many :enrolled_student_assignments
 	has_many :assignments, through: :enrolled_student_assignments
+
+	after_save :copy_assignments
+
+	private
+	def copy_assignments
+		course_assignments = self.course.assignments
+		course_assignments.each do |assignment|
+			self.enrolled_student_assignments.create(assignment_id: assignment.id)
+		end
+	end
 end
