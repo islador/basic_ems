@@ -1,2 +1,3 @@
-%h1 Assignments#show
-%p Find me in app/views/assignments/show.html.haml
+%h1{:id => "assignment_name"}=@assignment.name
+
+=button_to("Delete Assignment", {action: "destroy", id: @assignment.id}, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger")
