@@ -12,6 +12,7 @@ FactoryGirl.define do
 	end
 
 	factory :assignment do
+		sequence(:name) {|n| "Name #{n}"}
 		start_date Date.today
 		due_date Date.today+1
 		max_points 100
