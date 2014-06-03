@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
 
+  #get 'enrolled_student_assignments/destroy'
+
+  #get 'enrolled_student_assignments/show'
+
+  
+
+  
+
   root to: "students#index"
 
   resources :students do
     resources :courses do
       post '/enroll', to: "courses#enroll"
       resources :assignments
+      get 'enrolled_student_assignments/show'
     end
+    put 'enrolled_student_assignments/submit_assignment'
+    get 'enrolled_student_assignments/index'
   end
 
   
