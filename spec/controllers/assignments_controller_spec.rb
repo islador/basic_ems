@@ -10,6 +10,11 @@ describe AssignmentsController do
       get 'new', student_id: student.id, course_id: course.id
       response.should be_success
     end
+
+    it "should make a new assignment" do
+      get 'new', student_id: student.id, course_id: course.id
+      expect(assigns(:assignment)).to_not be_nil
+    end
   end
 
   describe "POST 'create'" do
