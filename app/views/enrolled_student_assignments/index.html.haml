@@ -25,6 +25,6 @@
 				%td #{assignment.earned_points}/#{@course_assignments[@student_assignments.index(assignment)].max_points}
 
 				%td
-					=button_to("Submit Assignment", {action: "submit_assignment", id: params[:id]}, method: :put, class: "btn btn-m btn-success")
+					=button_to("Submit Assignment", {action: "submit_submission", student_id: params[:student_id], id: assignment.id}, method: :get, class: "btn btn-m btn-success")
 
 

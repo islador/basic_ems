@@ -22,6 +22,8 @@ class EnrolledStudentAssignment < ActiveRecord::Base
 	has_one :student, through: :enrolled_student
 	has_one :course, through: :assignment
 
+	#Storage would usually be stubbed out to a proper file host.
 	has_attached_file :submission,
 		:path => ":rails_root/uploads/:class/:id/:basename.:extension"
+		do_not_validate_attachment_file_type :submission
 end
