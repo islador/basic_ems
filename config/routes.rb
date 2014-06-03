@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  #get 'enrolled_student_assignments/destroy'
+
+  #get 'enrolled_student_assignments/show'
+
+  
+
+  
+
   root to: "students#index"
 
   resources :students do
@@ -7,6 +15,10 @@ Rails.application.routes.draw do
       post '/enroll', to: "courses#enroll"
       resources :assignments
     end
+    resources :enrolled_student_assignments, only: [:show, :index]
+    #get 'enrolled_student_assignments/show'
+    put 'enrolled_student_assignments/submit_assignment'
+    #get 'enrolled_student_assignments/index'
   end
 
   
