@@ -6,6 +6,7 @@ class AssignmentsController < ApplicationController
 
   def create
     @new_assignment = Assignment.new(params[:assignment].permit(:name, :description, :start_date, :due_date, :max_points))
+    @new_assignment.course_id = params[:course_id]
     if @new_assignment.valid? == true
       @new_assignment.save!
       redirect_to student_course_assignment_path(params[:student_id], params[:course_id], @new_assignment)
