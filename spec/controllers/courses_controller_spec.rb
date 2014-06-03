@@ -80,6 +80,13 @@ describe CoursesController do
 
     xit "should paginate returns" do
     end
+
+    it "should retrieve the enrolledStudent record from the database" do
+      enrolledStudentList = EnrolledStudent.where("student_id = ?", student.id)
+      get 'index', student_id: student.id, :id => course.id
+      expect(assigns(:enrolled_students)).to_not be_nil
+      expect(assigns(:enrolled_students)).to match_array(enrolledStudentList)
+    end
   end
 
   describe "POST 'enroll'" do

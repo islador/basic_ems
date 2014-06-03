@@ -31,6 +31,7 @@ class CoursesController < ApplicationController
 
     def index
         @courses = Course.all
+        @enrolled_students = EnrolledStudent.joins(:course).where("student_id = ?", params[:student_id])
     end
 
     def enroll
