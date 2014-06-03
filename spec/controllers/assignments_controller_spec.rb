@@ -42,6 +42,11 @@ describe AssignmentsController do
       get 'show', student_id: student.id, course_id: course.id, id: assignment.id
       response.should be_success
     end
+
+    it "should retrieve the assignment from the database" do
+      get 'show', student_id: student.id, course_id: course.id, id: assignment.id
+      expect(assigns(:assignment)).to eq(assignment)
+    end
   end
 
   describe "GET 'index'" do

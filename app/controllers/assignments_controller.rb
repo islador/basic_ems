@@ -18,6 +18,7 @@ class AssignmentsController < ApplicationController
   end
 
   def show
+    @assignment = Assignment.where("id = ?", params[:id])[0]
   end
 
   def index
