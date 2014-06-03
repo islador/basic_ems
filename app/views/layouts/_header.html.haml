@@ -1,0 +1,12 @@
+%header{:class => "navbar navbar-fixed-top navbar", :role =>"navigation"}
+  %div{:class => "navbar-inner"}
+    %div{:class => "container"}
+      =link_to "EMS Basic", root_path, :id => "logo", :class => 'navbar-brand'
+      %nav
+        -if params[:student_id].nil? == false
+          %ul{:class => "nav pull-right"}
+            %li
+              =link_to "Course Index", student_courses_path, :class => "navbar-link active"
+            %li
+              =link_to "Your Assignments", student_enrolled_student_assignments_path, :class => "navbar-link active"
+          

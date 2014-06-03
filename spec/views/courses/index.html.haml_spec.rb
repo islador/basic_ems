@@ -21,10 +21,6 @@ describe "courses/index.html.haml" do
 			should have_selector("tr#course_#{course1.id}")
 			should_not have_selector("tr#course_999999999")
 		end
-		#page.all("tbody tr").count.should eql(1)
-
-		#find("tbody tr").count.should eql(1)
-		#page.all("tr").count.should eql(1)
 	end
 
 	xit "should paginate the table" do
@@ -42,8 +38,8 @@ describe "courses/index.html.haml" do
 		end
 	end
 
-	xit "clicking the enroll button should create an enrolled_student between the course and the student" do
-		click_button('Enroll in Course')
+	it "clicking the enroll button should create an enrolled_student between the course and the student" do
+		find("#enroll_course_#{course.id}").click
 		course.enrolled_students[0].student.id.should be student.id
 	end
 end
