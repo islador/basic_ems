@@ -26,6 +26,7 @@ class CoursesController < ApplicationController
 
     def show
         @course = Course.where("id = ?", params[:id])[0]
+        @enrolled_student = EnrolledStudent.joins(:course).where("student_id = ? AND course_id = ?", params[:student_id], params[:id])[0]
     end
 
     def index
@@ -37,6 +38,8 @@ class CoursesController < ApplicationController
         if @new_enrolled_student.valid? == true
             @new_enrolled_student.save!
             redirect_to student_courses_path(params[:student_id], params[:course_id])
+        else
+            redirect_to student_course_path(params[:course_id])
         end
     end
 end

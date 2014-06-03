@@ -48,6 +48,7 @@ describe CoursesController do
   end
 
   describe "GET 'show'" do
+    let!(:enrolled_student) {FactoryGirl.create(:enrolled_student, course_id: course.id, student_id: student.id)}
     it "returns http success" do
       get 'show', student_id: student.id, :id => course.id
       response.should be_success
@@ -56,6 +57,12 @@ describe CoursesController do
     it "should retrieve the course from the database" do
       get 'show', student_id: student.id,  :id => course.id
       expect(assigns(:course).id).to be course.id
+    end
+
+    it "should retrieve the enrolledStudent record from the database" do
+      get 'show', student_id: student.id, :id => course.id
+      expect(assigns(:enrolled_student)).to_not be_nil
+      expect(assigns(:enrolled_student)).to eq(enrolled_student)
     end
   end
 
@@ -68,7 +75,7 @@ describe CoursesController do
     it "should retrieve all courses from the database" do
       get 'index', student_id: student.id 
       courseList = Course.all
-      expect(assigns(:courses)).should =~ courseList
+      expect(assigns(:courses)).to match_array(courseList)
     end
 
     xit "should paginate returns" do
@@ -83,14 +90,13 @@ describe CoursesController do
 
     it "should create a new enrolled_student between the student and the course" do
       post 'enroll', student_id: student.id, :course_id => course.id
-      expect(assigns(:new_enrolled_student)).should_not be_nil
+      expect(assigns(:new_enrolled_student)).to_not be_nil
     end
 
     it "should create the correct enrolled_student" do
       post 'enroll', student_id: student.id, :course_id => course.id
-      expect(assigns(:new_enrolled_student).student.id).should be student.id
-      expect(assigns(:new_enrolled_student).course.id).should be course.id
+      expect(assigns(:new_enrolled_student).student.id).to be student.id
+      expect(assigns(:new_enrolled_student).course.id).to be course.id
     end
   end
-
 end
