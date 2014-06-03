@@ -60,6 +60,13 @@ describe AssignmentsController do
       get 'index', student_id: student.id, course_id: course.id
       response.should be_success
     end
+
+    it "should retrieve all of the course's assignments" do
+      courseAssignments = Assignment.where("course_id = ?", course.id)
+      get 'index', student_id: student.id, course_id: course.id
+      expect(assigns(:assignments)).to_not be_nil
+      expect(assigns(:assignments)).to match_array(courseAssignments)
+    end
   end
 
 end

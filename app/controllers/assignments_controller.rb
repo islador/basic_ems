@@ -27,5 +27,6 @@ class AssignmentsController < ApplicationController
   end
 
   def index
+    @assignments = Assignment.where("course_id = ?", params[:course_id])
   end
 end
