@@ -20,6 +20,7 @@ class EnrolledStudent < ActiveRecord::Base
 	after_save :copy_assignments
 
 	private
+	#This is likely to be heavily blocking, and would ideally be shuttled off to an async worker.
 	def copy_assignments
 		course_assignments = self.course.assignments
 		course_assignments.each do |assignment|
