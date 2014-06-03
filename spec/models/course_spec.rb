@@ -55,7 +55,7 @@ describe Course do
 		end
 
 		it "should have enrolled_student as an enrolled student" do
-			course.enrolled_students[0].id.should be enrolled_student.id
+			course.enrolled_students.where("id = ?", enrolled_student.id)[0].should eq(enrolled_student)
 		end
 
 		it "should have students" do
@@ -66,4 +66,27 @@ describe Course do
 			course.students[0].id.should be student.id
 		end
 	end
+
+	describe "propagate_assignment > " do
+		let!(:enrolled_student2) {FactoryGirl.create(:enrolled_student, course: course)}
+		let!(:enrolled_student3) {FactoryGirl.create(:enrolled_student, course: course)}
+		let!(:wrong_enrolled_student) {FactoryGirl.create(:enrolled_student)}
+		let!(:assignment) {FactoryGirl.create(:assignment)}
+
+		it {should respond_to(:propagate_assignment)}
+
+		it "should create an enrolled_student_assignment for each of its enrolled_students" do
+			expect{
+				course.propagate_assignment(assignment)
+			}.to change(EnrolledStudentAssignment, :count).by(+2)
+		end
+
+		#Test ensures that non-affiliated students do not receive an assignment
+		it "should not create an enrolled_student_assignment for students that aren't enrolled in it" do
+			expect{
+				course.propagate_assignment(assignment)
+			}.to change(wrong_enrolled_student.enrolled_student_assignments, :count).by(0)
+		end
+	end
+
 end

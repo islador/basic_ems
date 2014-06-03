@@ -16,4 +16,13 @@ class Course < ActiveRecord::Base
 	has_many :assignments
 	has_many :enrolled_students
 	has_many :students, through: :enrolled_students
+
+	def propagate_assignment(assignment)
+		#Heavyily blocking, should be moved to an async worker
+		enrolled_students.each do |es|
+			es.enrolled_student_assignments.create(assignment_id: assignment.id)
+		end
+	end
+
+	
 end
