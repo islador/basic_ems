@@ -30,9 +30,9 @@ describe StudentsController do
   end
 
   describe "DELETE 'destroy'" do
-    it "should return http success" do
+    it "should redirect upon success" do
       delete 'destroy', :id => student.id
-      response.should be_success
+      response.should be_redirect
     end
 
     it "should destroy the target student" do

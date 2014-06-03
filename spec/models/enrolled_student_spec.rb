@@ -46,15 +46,15 @@ describe EnrolledStudent do
 		end
 
 		describe "Enrolled Student Assignments > " do
-			let(:assignment){FactoryGirl.create(:assignment, course: course)}
-			let!(:enrolled_student_assignment) {FactoryGirl.create(:enrolled_student_assignment, enrolled_student: enrolled_student, assignment: assignment)}
+			let!(:assignment){FactoryGirl.create(:assignment, course: course)}
+			
 			it {should respond_to(:enrolled_student_assignments)}
 			it "should have enrolled student assignments" do
 				enrolled_student.enrolled_student_assignments.should_not be_nil
 			end
 
 			it "should have the correct enrolled_student_assignment" do
-				enrolled_student.enrolled_student_assignments[0].id.should be enrolled_student_assignment.id
+				enrolled_student.enrolled_student_assignments[0].should eq(enrolled_student.enrolled_student_assignments.where("assignment_id=?", assignment.id)[0])
 			end
 
 			it {should respond_to(:assignments)}
