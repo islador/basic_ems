@@ -58,11 +58,30 @@ describe EnrolledStudentAssignmentsController do
     end
   end
 
-  describe "PUT 'submit_assignment'" do
+  describe "get 'submit_assignment'" do
     it "returns http success" do
-      put 'submit_assignment', student_id: student.id, id: enrolled_student_assignment.id
+      get 'submit_submission', student_id: student.id, id: enrolled_student_assignment.id
       response.should be_success
+    end
+
+    it "should retrieve the target enrolled_student_assignment from the database" do
+      get 'submit_submission', student_id: student.id, id: enrolled_student_assignment.id
+      expect(assigns(:enrolled_student_assignment)).to_not be_nil
+      expect(assigns(:enrolled_student_assignment)).to eq(enrolled_student_assignment)
     end
   end
 
+  describe "patch 'create_submission'" do
+    #These tests poorly stub out the paperclip upload logic.
+    it "redirects upon success" do
+      patch 'create_submission', student_id: student.id, enrolled_student_assignment_id: enrolled_student_assignment.id, enrolled_student_assignment:{"submission"=>""}
+      response.should be_redirect
+    end
+
+    it "should update the submit date" do
+      patch 'create_submission', student_id: student.id, enrolled_student_assignment_id: enrolled_student_assignment.id, enrolled_student_assignment:{"submission"=>""}
+      expect(assigns(:submission).submit_date).to_not be_nil
+      expect(assigns(:submission).submit_date).to eq(Date.today)
+    end
+  end
 end

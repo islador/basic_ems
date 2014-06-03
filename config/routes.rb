@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     end
     resources :enrolled_student_assignments, only: [:show, :index]
     #get 'enrolled_student_assignments/show'
-    put 'enrolled_student_assignments/submit_assignment'
+    get 'enrolled_student_assignments/submit_submission/:id', to: "enrolled_student_assignments#submit_submission"
+    patch 'enrolled_student_assignments/:enrolled_student_assignment_id/create_submission', to: "enrolled_student_assignments#create_submission"
     #get 'enrolled_student_assignments/index'
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603032536) do
+ActiveRecord::Schema.define(version: 20140603145859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(version: 20140603032536) do
     t.date     "submit_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "submission_file_name"
+    t.string   "submission_content_type"
+    t.integer  "submission_file_size"
+    t.datetime "submission_updated_at"
   end
 
   create_table "enrolled_students", force: true do |t|

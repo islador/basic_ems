@@ -2,13 +2,17 @@
 #
 # Table name: enrolled_student_assignments
 #
-#  id                  :integer          not null, primary key
-#  enrolled_student_id :integer
-#  assignment_id       :integer
-#  earned_points       :integer
-#  submit_date         :date
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id                      :integer          not null, primary key
+#  enrolled_student_id     :integer
+#  assignment_id           :integer
+#  earned_points           :integer
+#  submit_date             :date
+#  created_at              :datetime
+#  updated_at              :datetime
+#  submission_file_name    :string(255)
+#  submission_content_type :string(255)
+#  submission_file_size    :integer
+#  submission_updated_at   :datetime
 #
 
 require 'spec_helper'
@@ -24,6 +28,9 @@ describe EnrolledStudentAssignment do
 
 	it {should respond_to(:earned_points)}
 	it {should respond_to(:submit_date)}
+	it {should respond_to(:submission_file_name)}
+	it {should respond_to(:submission_content_type)}
+	it {should respond_to(:submission_file_size)}
 	it {should be_valid}
 
 	describe "Associations > " do
