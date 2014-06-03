@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       post '/enroll', to: "courses#enroll"
       resources :assignments
     end
-    get 'enrolled_student_assignments/show'
+    resources :enrolled_student_assignments, only: [:show, :index]
+    #get 'enrolled_student_assignments/show'
     put 'enrolled_student_assignments/submit_assignment'
-    get 'enrolled_student_assignments/index'
+    #get 'enrolled_student_assignments/index'
   end
 
   
