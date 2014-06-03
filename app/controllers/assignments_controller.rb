@@ -15,6 +15,11 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
+    target = Assignment.where("id = ?", params[:id])[0]
+    if target.nil? == false
+      target.destroy
+      redirect_to student_course_assignments_path(params[:student_id], params[:course_id])
+    end
   end
 
   def show

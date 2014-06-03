@@ -31,9 +31,15 @@ describe AssignmentsController do
   end
 
   describe "DELETE 'destroy'" do
-    it "returns http success" do
+    it "should redirect upon successful deletion" do
       delete 'destroy', student_id: student.id, course_id: course.id, id: assignment.id
-      response.should be_success
+      response.should be_redirect
+    end
+
+    it "should destroy the target assignment" do
+      Assignment.where("id = ?", assignment.id)[0].should_not be_nil
+      delete 'destroy', student_id: student.id, course_id: course.id, id: assignment.id
+      Assignment.where("id = ?", assignment.id)[0].should be_nil
     end
   end
 
