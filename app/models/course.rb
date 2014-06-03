@@ -17,6 +17,7 @@ class Course < ActiveRecord::Base
 	has_many :enrolled_students
 	has_many :students, through: :enrolled_students
 
+	#Create a student_enrolled_assignment between existing students and the passed in assignment
 	def propagate_assignment(assignment)
 		#Heavyily blocking, should be moved to an async worker
 		enrolled_students.each do |es|
