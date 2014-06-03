@@ -26,11 +26,13 @@ class CoursesController < ApplicationController
 
     def show
         @course = Course.where("id = ?", params[:id])[0]
+        #I'd like to use this to switch enrollment buttons based on enrollment status. But that is unnecessary feature creep
         @enrolled_student = EnrolledStudent.joins(:course).where("student_id = ? AND course_id = ?", params[:student_id], params[:id])[0]
     end
 
     def index
         @courses = Course.all
+        #I'd like to use this to switch enrollment buttons based on enrollment status. But that is unnecessary feature creep
         @enrolled_students = EnrolledStudent.joins(:course).where("student_id = ?", params[:student_id])
     end
 

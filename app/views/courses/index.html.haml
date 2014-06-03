@@ -16,4 +16,4 @@
 				%td= course.end_date
 
 				%td
-					=button_to("Enroll in Course", {action: "enroll", course_id: course.id}, method: :post, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger", id: "enroll_course_#{course.id}")
+					=button_to("Enroll in Course", {action: "enroll", course_id: course.id}, method: :post, class: "btn btn-m btn-danger", id: "enroll_course_#{course.id}")
