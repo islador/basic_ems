@@ -32,11 +32,26 @@ describe EnrolledStudentAssignmentsController do
       response.should be_success
     end
 
-    it "should retrieve all of the student's assignments" do
-      studentAssignments = student.enrolled_students.joins(:assignments)
+    it "should retrieve all of the student's course assignments" do
+      courseAssignments = []
+      student.enrolled_students.each do |es|
+        courseAssignments.push(es.assignments)
+      end
+      courseAssignments.flatten!
       get 'index', student_id: student.id
-      expect(assigns(:assignments)).to_not be_nil
-      expect(assigns(:assignments)).to match_array(studentAssignments)
+      expect(assigns(:course_assignments)).to_not be_nil
+      expect(assigns(:course_assignments)).to match_array(courseAssignments)
+    end
+
+    it "should retrieve all of the student's student assignments" do
+      studentAssignments = []
+      student.enrolled_students.each do |es|
+        studentAssignments.push(es.enrolled_student_assignments)
+      end
+      studentAssignments.flatten!
+      get 'index', student_id: student.id
+      expect(assigns(:student_assignments)).to_not be_nil
+      expect(assigns(:student_assignments)).to match_array(studentAssignments)
     end
 
     xit "should paginate the results" do
