@@ -1,3 +1,4 @@
 %h1{:id => "course_name"}=@course.name
 
 =button_to("Delete Course", {action: "destroy", id: @course.id}, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-m btn-danger")
+=button_to("Create New Assignment", new_student_course_assignment_path(course_id: @course.id), method: :get, class: "btn btn-m btn-success")
