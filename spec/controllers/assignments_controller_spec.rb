@@ -18,9 +18,15 @@ describe AssignmentsController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
-      post 'create', student_id: student.id, course_id: course.id, description: "Hai", max_points: 100, start_date: Date.today, due_date: Date.today+1
-      response.should be_success
+    it "should redirect" do
+      post 'create', student_id: student.id, course_id: course.id, assignment:{"description" => "Hai", "max_points" => "100", "start_date" =>  Date.today, "due_date" => Date.today+1}
+      response.should be_redirect
+    end
+
+    it "should create a new assignment" do
+      expect{
+        post 'create', student_id: student.id, course_id: course.id, assignment:{"description" => "Hai", "max_points" => "100", "start_date" =>  Date.today, "due_date" => Date.today+1}
+        }.to change(Assignment, :count).by(+1)
     end
   end
 
