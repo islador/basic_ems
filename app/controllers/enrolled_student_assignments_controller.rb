@@ -6,6 +6,7 @@ class EnrolledStudentAssignmentsController < ApplicationController
 	end
 
 	def index
+		@assignments = Student.where("id = ?", params[:student_id])[0].enrolled_students.joins(:assignments)
 	end
 
 	def submit_assignment

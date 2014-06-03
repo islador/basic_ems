@@ -31,6 +31,16 @@ describe EnrolledStudentAssignmentsController do
       get 'index', student_id: student.id
       response.should be_success
     end
+
+    it "should retrieve all of the student's assignments" do
+      studentAssignments = student.enrolled_students.joins(:assignments)
+      get 'index', student_id: student.id
+      expect(assigns(:assignments)).to_not be_nil
+      expect(assigns(:assignments)).to match_array(studentAssignments)
+    end
+
+    xit "should paginate the results" do
+    end
   end
 
   describe "PUT 'submit_assignment'" do
