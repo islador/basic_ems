@@ -1,3 +1,4 @@
 %h1=@course_assignment.name
 %h2 Score: #{@student_assignment.earned_points}/#{@course_assignment.max_points}
-=button_to("Submit Assignment", {action: "submit_submission", id: params[:id]}, method: :get, class: "btn btn-m btn-success")
+-if @student_assignment.submit_date.nil? == true
+	=button_to("Submit Assignment", {action: "submit_submission", id: params[:id]}, method: :get, class: "btn btn-m btn-success")
