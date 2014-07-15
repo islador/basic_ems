@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ananke</title>
+  <title>EMS Basic</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
   <body>
     <%= render 'layouts/header' %>
-      <div class="container">
-      	<% flash.each do |key, value| %>
-  			  <div class="alert alert-<%= key %>"><%= value %></div>
-      	<% end %>
-  		<%= yield %>
+    <div class="container">
+        <div class="outer-center">
+          <div class="inner-center">
+            <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+          </div>
+        </div>
+      <div class="clear">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
