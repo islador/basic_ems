@@ -32,6 +32,9 @@ gem 'spring',        group: :development
 
 gem 'paperclip'
 
+#S3 requirements
+gem 'aws-sdk'
+
 
 group :development do
 	gem 'annotate'

@@ -19,8 +19,6 @@ class EnrolledStudentAssignmentsController < ApplicationController
 			@course_assignments.push(es.assignments)
 		end
 		@course_assignments.flatten!
-		
-		#@course_assignments = Student.where("id = ?", params[:student_id])[0].enrolled_students.joins(:assignments)
 	end
 
 	def submit_submission
@@ -31,6 +29,6 @@ class EnrolledStudentAssignmentsController < ApplicationController
 		@submission = EnrolledStudentAssignment.where("id = ?", params[:enrolled_student_assignment_id])[0]
 		@submission.submit_date = Date.today
 		@submission.update_attributes(params[:enrolled_student_assignment].permit(:submission))
-		redirect_to student_enrolled_student_assignments_path(student_id: params[:student_id])
+		redirect_to student_enrolled_student_assignments_path(student_id: params[:student_id]), notice: "Assignment Submitted!"
 	end
 end
