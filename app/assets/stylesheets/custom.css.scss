@@ -12,8 +12,36 @@ header {
 			float: left;
 			margin-left: 10px;
 			margin-top: 5px;
+			a:hover {
+				color: black;
+				background-color: transparent;
+			}
 		}
 	}
+}
+
+/* Flash */
+.alert {
+	display: inline-block;
+	border-color: black;
+	border-radius: 5px;
+	text-align:center;
+	font-weight:bold;
+	background-color: rgba(122,189,111,1);
+}
+
+.outer-center {
+    float: right;
+    right: 50%;
+    position: relative;
+}
+.inner-center {
+    float: right;
+    right: -50%;
+    position: relative;
+}
+.clear{
+	clear:both;
 }
 
 /*Devise*/
