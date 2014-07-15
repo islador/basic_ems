@@ -34,6 +34,7 @@ gem 'paperclip'
 
 #S3 requirements
 gem 'aws-sdk'
+gem 'rails_12factor', group: :production
 
 
 group :development do
